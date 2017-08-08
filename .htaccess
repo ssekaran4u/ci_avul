@@ -1,0 +1,25 @@
+# Specify a Default Charset
+AddDefaultCharset utf-8
+
+##
+# Remove index.php from url
+#
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/?$1 [L]
+
+##
+# Prevent directory access
+#
+Options -Indexes
+
+##
+# mod_pagespeed configuration
+#
+<IfModule pagespeed_module>
+    ModPagespeedDomain *
+    ModPagespeedDisallow "http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ModPagespeedDisallow "http://www.google-analytics.com/analytics.js"
+    ModPagespeed on
+</IfModule>
